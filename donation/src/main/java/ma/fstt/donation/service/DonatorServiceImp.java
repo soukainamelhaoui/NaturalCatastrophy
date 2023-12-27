@@ -19,22 +19,28 @@ public class DonatorServiceImp implements DonatorService {
     }
 
     @Override
-    public Donator update(Donator donator, Long id) {
-        return null;
+    public Donator update(Donator newDonator, Long id) {
+        return donatorRepository.findById(id)
+                .map(donator -> {
+                    donator.setName(newDonator.getName());
+                    donator.setAddress(newDonator.getAddress());
+                    donator.setPhone(newDonator.getPhone());
+                    return donatorRepository.save(donator);
+                }).get();
     }
 
     @Override
     public void delete(Long id) {
-
+        donatorRepository.delete(this.getById(id));
     }
 
     @Override
     public Donator getById(Long id) {
-        return null;
+        return donatorRepository.findById(id).get();
     }
 
     @Override
     public List<Donator> getAll() {
-        return null;
+        return donatorRepository.findAll();
     }
 }

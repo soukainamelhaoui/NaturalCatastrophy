@@ -19,22 +19,29 @@ public class ItemServiceImp implements ItemService{
     }
 
     @Override
-    public Item update(Item item, Long id) {
-        return null;
+    public Item update(Item newItem, Long id) {
+        return itemRepository.findById(id)
+                .map(item -> {
+                    item.setDescription(newItem.getDescription());
+                    item.setQuantity(newItem.getQuantity());
+                    item.setDateOfDonation(newItem.getDateOfDonation());
+                    item.setCityDonatedTo(newItem.getCityDonatedTo());
+                    return itemRepository.save(item);
+                }).get();
     }
 
     @Override
     public void delete(Long id) {
-
+        itemRepository.delete(this.getById(id));
     }
 
     @Override
     public Item getById(Long id) {
-        return null;
+        return itemRepository.findById(id).get();
     }
 
     @Override
     public List<Item> getAll() {
-        return null;
+        return itemRepository.findAll();
     }
 }

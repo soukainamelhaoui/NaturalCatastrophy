@@ -19,22 +19,28 @@ public class NecessityServiceImp implements NecessityService {
     }
 
     @Override
-    public Necessity update(Necessity necessity, Long id) {
-        return null;
+    public Necessity update(Necessity newNecessity, Long id) {
+        return necessityRepository.findById(id)
+                .map(necessity -> {
+                    necessity.setDescription(newNecessity.getDescription());
+                    necessity.setCity(newNecessity.getCity());
+                    necessity.setQuantity(newNecessity.getQuantity());
+                    return necessityRepository.save(necessity);
+                }).get();
     }
 
     @Override
     public void delete(Long id) {
-
+        necessityRepository.delete(this.getById(id));
     }
 
     @Override
     public Necessity getById(Long id) {
-        return null;
+        return necessityRepository.findById(id).get();
     }
 
     @Override
     public List<Necessity> getAll() {
-        return null;
+        return necessityRepository.findAll();
     }
 }

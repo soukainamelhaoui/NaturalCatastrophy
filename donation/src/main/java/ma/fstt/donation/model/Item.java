@@ -24,10 +24,10 @@ public class Item {
     @Column(name = "quantity")
     private Integer quantity;
 
-    @Column(name = "date")
+    @Column(name = "date_of_donation")
     private LocalDate dateOfDonation;
 
-    @Column(name = "city")
+    @Column(name = "city_donated_to")
     private String cityDonatedTo;
 
     @ManyToOne

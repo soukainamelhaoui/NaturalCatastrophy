@@ -25,7 +25,7 @@ public class Donator {
     @Column(name = "address")
     private String address;
 
-    @Column(name = "phone")
+    @Column(name = "phone", unique = true)
     private Long phone;
 
     @OneToMany(mappedBy = "donator", cascade = CascadeType.ALL)
