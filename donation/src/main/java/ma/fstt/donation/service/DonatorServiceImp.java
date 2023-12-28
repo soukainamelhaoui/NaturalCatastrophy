@@ -43,4 +43,9 @@ public class DonatorServiceImp implements DonatorService {
     public List<Donator> getAll() {
         return donatorRepository.findAll();
     }
+
+    @Override
+    public Donator getByPhone(Long phone) {
+        return donatorRepository.findByPhone(phone);
+    }
 }

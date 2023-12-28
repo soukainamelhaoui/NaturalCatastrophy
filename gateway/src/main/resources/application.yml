@@ -1,0 +1,32 @@
+server:
+  port: 8222
+
+eureka:
+  client:
+    register-with-eureka: false
+
+spring:
+  application:
+    name: gateway
+  config:
+    import: optional:configserver:http://localhost:8888
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id : donation
+          uri: http://localhost:8010
+          predicates:
+            - Path=/api/donation/**
+        - id: volunteering
+          uri: http://localhost:8020
+          predicates:
+            - Path=/api/volunteering/**
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/realms/spring-boot-microservices-project
+

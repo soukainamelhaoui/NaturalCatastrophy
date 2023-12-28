@@ -1,7 +1,7 @@
-package ma.fstt.donation.controller;
+package ma.fstt.volunteering.controller;
 
-import ma.fstt.donation.model.Necessity;
-import ma.fstt.donation.service.NecessityService;
+import ma.fstt.volunteering.model.Necessity;
+import ma.fstt.volunteering.service.NecessityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/necessity")
+@RequestMapping("/api/volunteering/necessity")
 public class NecessityController {
 
     @Autowired
