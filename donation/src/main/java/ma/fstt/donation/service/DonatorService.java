@@ -14,4 +14,6 @@ public interface DonatorService {
     Donator getById(Long id);
 
     List<Donator> getAll();
+
+    Donator getByPhone(Long phone);
 }

@@ -1,7 +1,7 @@
-package ma.fstt.donation.service;
+package ma.fstt.volunteering.service;
 
-import ma.fstt.donation.model.Necessity;
-import ma.fstt.donation.repository.NecessityRepository;
+import ma.fstt.volunteering.model.Necessity;
+import ma.fstt.volunteering.repository.NecessityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

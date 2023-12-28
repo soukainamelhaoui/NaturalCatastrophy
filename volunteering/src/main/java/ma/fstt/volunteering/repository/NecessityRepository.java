@@ -1,6 +1,6 @@
-package ma.fstt.donation.repository;
+package ma.fstt.volunteering.repository;
 
-import ma.fstt.donation.model.Necessity;
+import ma.fstt.volunteering.model.Necessity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface NecessityRepository extends JpaRepository<Necessity, Long> {

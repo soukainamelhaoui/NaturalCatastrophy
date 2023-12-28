@@ -1,4 +1,4 @@
-package ma.fstt.donation.model;
+package ma.fstt.volunteering.model;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -19,10 +19,11 @@ public class Necessity {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "city")
-    private String city;
-
     @Column(name = "quantity")
     private Integer quantity;
+
+    @ManyToOne
+    @JoinColumn(name = "city_id")
+    private City city;
 
 }

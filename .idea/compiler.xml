@@ -7,6 +7,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="volunteering" />
         <module name="donation" />
         <module name="config" />
         <module name="gateway" />
@@ -18,6 +19,7 @@
       <module name="discovery" target="17" />
       <module name="donation" target="17" />
       <module name="gateway" target="17" />
+      <module name="volunteering" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -26,6 +28,7 @@
       <module name="discovery" options="-parameters" />
       <module name="donation" options="-parameters" />
       <module name="gateway" options="-parameters" />
+      <module name="volunteering" options="-parameters" />
     </option>
   </component>
 </project>

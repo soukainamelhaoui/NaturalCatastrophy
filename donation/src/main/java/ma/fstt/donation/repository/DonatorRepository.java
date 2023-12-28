@@ -4,4 +4,5 @@ import ma.fstt.donation.model.Donator;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface DonatorRepository extends JpaRepository<Donator, Long> {
+    Donator findByPhone(Long phone);
 }
