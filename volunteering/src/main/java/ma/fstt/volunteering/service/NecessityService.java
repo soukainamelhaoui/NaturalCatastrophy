@@ -7,7 +7,7 @@ import java.util.List;
 public interface NecessityService {
     Necessity save(Necessity necessity);
 
-    Necessity update(Necessity necessity, Long id);
+    Necessity update(Necessity newNecessity, Long id);
 
     void delete(Long id);
 

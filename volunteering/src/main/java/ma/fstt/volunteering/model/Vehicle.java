@@ -3,6 +3,8 @@ package ma.fstt.volunteering.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Getter
 @Setter
 @ToString
@@ -23,6 +25,9 @@ public class Vehicle {
     private String size;
 
     @Column(name = "availability")
-    private String availability;
+    private Boolean availability;
+
+    @OneToMany(mappedBy = "vehicle", cascade = CascadeType.ALL)
+    private List<Distribution> distributionList;
 
 }

@@ -24,4 +24,7 @@ public class City {
     @OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
     private List<Necessity> necessityList;
 
+    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
+    private List<Distribution> distributionList;
+
 }

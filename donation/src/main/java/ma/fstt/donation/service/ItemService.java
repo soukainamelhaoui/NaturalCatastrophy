@@ -14,4 +14,6 @@ public interface ItemService {
     Item getById(Long id);
 
     List<Item> getAll();
+
+    void sendItemsToDistribution(Long distributionId, List<Long> itemIds);
 }

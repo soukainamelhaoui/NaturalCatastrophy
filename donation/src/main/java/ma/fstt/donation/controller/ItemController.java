@@ -2,6 +2,7 @@ package ma.fstt.donation.controller;
 
 import ma.fstt.donation.model.Item;
 import ma.fstt.donation.service.ItemService;
+import ma.fstt.donation.util.SaveInDistributionRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -44,6 +45,17 @@ public class ItemController {
     public ResponseEntity<List<Item>> getAll(){
         List<Item> itemList = itemService.getAll();
         return ResponseEntity.status(HttpStatus.OK).body(itemList);
+    }
+
+    @PostMapping("/save-in-distribution")
+    public ResponseEntity<Void> selectItems(
+            @RequestBody SaveInDistributionRequest request) {
+
+        Long distributionId = request.getDistributionId();
+        List<Long> itemIds = request.getItemIds();
+
+        itemService.sendItemsToDistribution(distributionId, itemIds);
+        return ResponseEntity.ok().build();
     }
 
 }

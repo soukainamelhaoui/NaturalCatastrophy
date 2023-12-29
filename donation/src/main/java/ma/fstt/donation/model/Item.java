@@ -30,6 +30,9 @@ public class Item {
     @Column(name = "city_donated_to")
     private String cityDonatedTo;
 
+    @Column(name = "is_available")
+    private Boolean isAvailable = true;
+
     @ManyToOne
     @JoinColumn(name = "donator_id")
     private Donator donator;

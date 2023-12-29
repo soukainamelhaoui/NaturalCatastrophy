@@ -1,11 +1,16 @@
 package ma.fstt.donation.service;
 
-import ma.fstt.donation.model.Donator;
 import ma.fstt.donation.model.Item;
 import ma.fstt.donation.repository.DonatorRepository;
 import ma.fstt.donation.repository.ItemRepository;
+import ma.fstt.donation.util.LoggingFilter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.BodyInserters;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.List;
 
@@ -70,4 +75,36 @@ public class ItemServiceImp implements ItemService{
     public List<Item> getAll() {
         return itemRepository.findAll();
     }
+
+    @Value("${volunteering.url}")
+    private String volunteeringUrl;
+
+    @Autowired
+    private WebClient.Builder webClientBuilder;
+
+
+    public void sendItemsToDistribution(Long distributionId, List<Long> itemIds) {
+
+        List<Item> items = itemRepository.findAllById(itemIds);
+        for (Item item : items) {
+            item.setIsAvailable(false);
+        }
+        itemRepository.saveAll(items);
+
+        String url = "/distribution/{distributionId}/add-items";
+
+        //add authentication later
+        webClientBuilder.baseUrl(volunteeringUrl)
+                .filter(new LoggingFilter())
+                .build()
+                .put()
+                .uri(uriBuilder -> uriBuilder
+                        .path(url)
+                        .build(distributionId))
+                .body(BodyInserters.fromValue(itemIds))
+                .retrieve()
+                .toBodilessEntity()
+                .block();
+    }
+
 }
