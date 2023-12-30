@@ -1,5 +1,6 @@
 package ma.fstt.volunteering.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -22,6 +23,7 @@ public class Necessity {
     @Column(name = "quantity")
     private Integer quantity;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "city_id")
     private City city;

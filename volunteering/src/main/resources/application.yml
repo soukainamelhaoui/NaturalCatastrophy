@@ -23,3 +23,6 @@ spring:
       ddl-auto: update
     database: mysql
     database-platform: org.hibernate.dialect.MySQLDialect
+
+donation:
+  url: http://localhost:8222/api/donation

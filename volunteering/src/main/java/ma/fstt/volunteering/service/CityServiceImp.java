@@ -22,7 +22,7 @@ public class CityServiceImp implements CityService {
     public City update(City newCity, Long id) {
         return cityRepository.findById(id)
                 .map(city -> {
-                    city.setAddress(newCity.getAddress());
+                    city.setName(newCity.getName());
                     return cityRepository.save(city);
                 }).get();
     }

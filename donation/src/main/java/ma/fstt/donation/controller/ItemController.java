@@ -49,12 +49,11 @@ public class ItemController {
 
     @PostMapping("/save-in-distribution")
     public ResponseEntity<Void> selectItems(
-            @RequestBody SaveInDistributionRequest request) {
+            @RequestBody List<Long> itemIds) {
 
-        Long distributionId = request.getDistributionId();
-        List<Long> itemIds = request.getItemIds();
+        //List<Long> itemIds = request.getItemIds();
 
-        itemService.sendItemsToDistribution(distributionId, itemIds);
+        itemService.setItemsavailabilityToFalse(itemIds);
         return ResponseEntity.ok().build();
     }
 

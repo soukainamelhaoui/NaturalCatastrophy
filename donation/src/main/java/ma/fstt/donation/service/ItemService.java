@@ -15,5 +15,5 @@ public interface ItemService {
 
     List<Item> getAll();
 
-    void sendItemsToDistribution(Long distributionId, List<Long> itemIds);
+    void setItemsavailabilityToFalse(List<Long> itemIds);
 }

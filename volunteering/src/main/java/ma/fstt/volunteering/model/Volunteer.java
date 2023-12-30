@@ -4,7 +4,9 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -12,8 +14,8 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="city")
-public class City {
+@Table(name="volunteer")
+public class Volunteer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,12 +24,14 @@ public class City {
     @Column(name = "name")
     private String name;
 
-    @JsonManagedReference
-    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
-    private List<Necessity> necessityList;
+    @Column(name = "address")
+    private String address;
 
-    @JsonManagedReference
-    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
-    private List<Distribution> distributionList;
+    @Column(name = "phone", unique = true)
+    private Long phone;
+
+//    @JsonManagedReference
+    @ManyToMany(mappedBy = "volunteers", cascade = CascadeType.ALL)
+    private List<Distribution> distributions;
 
 }

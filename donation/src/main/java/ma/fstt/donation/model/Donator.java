@@ -1,6 +1,7 @@
 package ma.fstt.donation.model;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -28,6 +29,7 @@ public class Donator {
     @Column(name = "phone", unique = true)
     private Long phone;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "donator", cascade = CascadeType.ALL)
     private List<Item> itemList;
 
