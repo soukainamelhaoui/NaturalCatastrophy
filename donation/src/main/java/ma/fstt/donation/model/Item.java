@@ -28,6 +28,9 @@ public class Item {
     @Column(name = "date_of_donation")
     private LocalDate dateOfDonation;
 
+    @Column(name = "amount")
+    private LocalDate amount;
+
     @Column(name = "is_available")
     private Boolean isAvailable = true;
 

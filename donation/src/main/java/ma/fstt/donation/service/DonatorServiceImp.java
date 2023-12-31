@@ -22,7 +22,8 @@ public class DonatorServiceImp implements DonatorService {
     public Donator update(Donator newDonator, Long id) {
         return donatorRepository.findById(id)
                 .map(donator -> {
-                    donator.setName(newDonator.getName());
+                    donator.setFirstName(newDonator.getFirstName());
+                    donator.setLastName(newDonator.getLastName());
                     donator.setAddress(newDonator.getAddress());
                     donator.setPhone(newDonator.getPhone());
                     return donatorRepository.save(donator);
