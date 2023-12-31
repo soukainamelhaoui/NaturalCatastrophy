@@ -15,5 +15,7 @@ public interface VolunteerService {
     Volunteer getById(Long id);
 
     List<Volunteer> getAll();
+
+    Volunteer findByUsername(String username);
     
 }

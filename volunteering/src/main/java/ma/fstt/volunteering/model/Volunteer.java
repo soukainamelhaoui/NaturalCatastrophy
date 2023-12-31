@@ -1,12 +1,9 @@
 package ma.fstt.volunteering.model;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Getter
 @Setter
@@ -21,6 +18,9 @@ public class Volunteer {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column(name = "username", unique = true)
+    private String username;
+
     @Column(name = "first_name")
     private String firstName;
 
@@ -33,7 +33,7 @@ public class Volunteer {
     @Column(name = "role")
     private String role;
 
-    @Column(name = "phone", unique = true)
+    @Column(name = "phone")
     private Long phone;
 
 //    @JsonManagedReference

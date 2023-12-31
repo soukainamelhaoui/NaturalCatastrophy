@@ -15,6 +15,11 @@ public class VolunteerServiceImp implements VolunteerService {
 
     @Override
     public Volunteer save(Volunteer volunteer) {
+
+        if (volunteerRepository.existsByUsername(volunteer.getUsername())) {
+            throw new RuntimeException("Username already exists");
+        }
+
         return volunteerRepository.save(volunteer);
     }
 
@@ -22,6 +27,7 @@ public class VolunteerServiceImp implements VolunteerService {
     public Volunteer update(Volunteer newVolunteer, Long id) {
         return volunteerRepository.findById(id)
                 .map(volunteer -> {
+                    volunteer.setUsername(newVolunteer.getUsername());
                     volunteer.setFirstName(newVolunteer.getFirstName());
                     volunteer.setLastName(newVolunteer.getLastName());
                     volunteer.setRole(newVolunteer.getRole());
@@ -45,5 +51,10 @@ public class VolunteerServiceImp implements VolunteerService {
     public List<Volunteer> getAll() {
         return volunteerRepository.findAll();
     }
-    
+
+    @Override
+    public Volunteer findByUsername(String username) {
+        return null;
+    }
+
 }
