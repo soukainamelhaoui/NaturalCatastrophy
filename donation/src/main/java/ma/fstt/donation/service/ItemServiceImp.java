@@ -2,14 +2,9 @@ package ma.fstt.donation.service;
 
 import ma.fstt.donation.model.Donator;
 import ma.fstt.donation.model.Item;
-import ma.fstt.donation.repository.DonatorRepository;
 import ma.fstt.donation.repository.ItemRepository;
-import ma.fstt.donation.util.LoggingFilter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.web.reactive.function.BodyInserters;
-import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.List;
 
@@ -20,25 +15,18 @@ public class ItemServiceImp implements ItemService{
     ItemRepository itemRepository;
 
     @Autowired
-    private DonatorRepository donatorRepository;
+    private DonatorService donatorService;
 
     @Override
     public Item save(Item item) {
 
-        Donator donator = item.getDonator();
+        String donatorUsername = item.getDonatorUsername();
+        Donator donator = donatorService.findByUsername(donatorUsername);
 
-        // Check if the Donator is already in the database
-        if (donator.getPhone() != null) {
-            Donator existingDonator = donatorRepository.findByPhone(donator.getPhone());
-            if (existingDonator != null) {
-                // Donator with the same phone number exists, use the existing one
-                item.setDonator(existingDonator);
-            } else {
-                // Donator with the same phone number doesn't exist, create a new one
-                donatorRepository.save(donator);
-                item.setDonator(donator);
-            }
+        if (donator == null) {
+            throw new RuntimeException("Donator not found with username: " + donatorUsername);
         }
+        item.setDonator(donator);
 
         return itemRepository.save(item);
     }

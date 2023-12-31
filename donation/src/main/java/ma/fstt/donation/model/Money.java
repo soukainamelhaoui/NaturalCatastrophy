@@ -21,6 +21,9 @@ public class Money {
     @Column(name = "amount")
     private Float amount;
 
+    @Column(name = "donator_username")
+    private String donatorUsername;
+
     @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "donator_id")

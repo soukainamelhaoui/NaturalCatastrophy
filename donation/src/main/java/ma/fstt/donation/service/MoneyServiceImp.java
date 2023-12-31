@@ -2,7 +2,6 @@ package ma.fstt.donation.service;
 
 import ma.fstt.donation.model.Donator;
 import ma.fstt.donation.model.Money;
-import ma.fstt.donation.repository.DonatorRepository;
 import ma.fstt.donation.repository.MoneyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,25 +15,18 @@ public class MoneyServiceImp implements MoneyService {
     MoneyRepository moneyRepository;
 
     @Autowired
-    private DonatorRepository donatorRepository;
+    private DonatorService donatorService;
 
     @Override
     public Money save(Money money) {
 
-        Donator donator = money.getDonator();
+        String donatorUsername = money.getDonatorUsername();
+        Donator donator = donatorService.findByUsername(donatorUsername);
 
-        // Check if the Donator is already in the database
-        if (donator != null && donator.getPhone() != null) {
-            Donator existingDonator = donatorRepository.findByPhone(donator.getPhone());
-            if (existingDonator != null) {
-                // Donator with the same phone number exists, use the existing one
-                money.setDonator(existingDonator);
-            } else {
-                // Donator with the same phone number doesn't exist, create a new one
-                donatorRepository.save(donator);
-                money.setDonator(donator);
-            }
+        if (donator == null) {
+            throw new RuntimeException("Donator not found with username: " + donatorUsername);
         }
+        money.setDonator(donator);
 
         return moneyRepository.save(money);
     }

@@ -15,6 +15,11 @@ public class DonatorServiceImp implements DonatorService {
 
     @Override
     public Donator save(Donator donator) {
+
+        if (donatorRepository.existsByUsername(donator.getUsername())) {
+            throw new RuntimeException("Username already exists");
+        }
+
         return donatorRepository.save(donator);
     }
 
@@ -22,6 +27,7 @@ public class DonatorServiceImp implements DonatorService {
     public Donator update(Donator newDonator, Long id) {
         return donatorRepository.findById(id)
                 .map(donator -> {
+                    donator.setUsername(newDonator.getUsername());
                     donator.setFirstName(newDonator.getFirstName());
                     donator.setLastName(newDonator.getLastName());
                     donator.setAddress(newDonator.getAddress());
@@ -45,8 +51,7 @@ public class DonatorServiceImp implements DonatorService {
         return donatorRepository.findAll();
     }
 
-    @Override
-    public Donator getByPhone(Long phone) {
-        return donatorRepository.findByPhone(phone);
+    public Donator findByUsername(String username) {
+        return donatorRepository.findByUsername(username);
     }
 }

@@ -4,8 +4,6 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDate;
-
 @Getter
 @Setter
 @ToString
@@ -28,11 +26,11 @@ public class Item {
     @Column(name = "quantity")
     private Integer quantity;
 
-    @Column(name = "amount")
-    private LocalDate amount;
-
     @Column(name = "is_available")
     private Boolean isAvailable = true;
+
+    @Column(name = "donator_username")
+    private String donatorUsername;
 
     @JsonBackReference
     @ManyToOne

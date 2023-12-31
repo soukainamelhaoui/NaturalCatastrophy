@@ -15,5 +15,5 @@ public interface DonatorService {
 
     List<Donator> getAll();
 
-    Donator getByPhone(Long phone);
+    Donator findByUsername(String username);
 }

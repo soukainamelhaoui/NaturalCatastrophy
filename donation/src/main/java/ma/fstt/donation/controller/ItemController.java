@@ -2,7 +2,6 @@ package ma.fstt.donation.controller;
 
 import ma.fstt.donation.model.Item;
 import ma.fstt.donation.service.ItemService;
-import ma.fstt.donation.util.SaveInDistributionRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

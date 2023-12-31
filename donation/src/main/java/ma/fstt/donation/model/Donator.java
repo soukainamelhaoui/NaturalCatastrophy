@@ -20,6 +20,9 @@ public class Donator {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column(name = "username", unique = true)
+    private String username;
+
     @Column(name = "first_name")
     private String firstName;
 
@@ -29,7 +32,7 @@ public class Donator {
     @Column(name = "address")
     private String address;
 
-    @Column(name = "phone", unique = true)
+    @Column(name = "phone")
     private Long phone;
 
     @JsonManagedReference
@@ -39,5 +42,9 @@ public class Donator {
     @JsonManagedReference
     @OneToMany(mappedBy = "donator", cascade = CascadeType.ALL)
     private List<Money> moneyList;
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "donator", cascade = CascadeType.ALL)
+    private List<Blood> bloodList;
 
 }
