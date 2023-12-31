@@ -23,6 +23,9 @@ public class Distribution {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column(name = "name")
+    private String name;
+
     @Column(name = "departure_date")
     private LocalDate departureDate;
 
@@ -32,6 +35,9 @@ public class Distribution {
     @Column(name = "vehicle")
     private String vehicle;
 
+    @Column(name = "city")
+    private String city;
+
 //    @JsonManagedReference
     @ManyToMany
     @JoinTable(
@@ -40,11 +46,6 @@ public class Distribution {
             inverseJoinColumns = @JoinColumn(name = "volunteer_id")
     )
     private List<Volunteer> volunteers;
-
-    @JsonBackReference
-    @ManyToOne
-    @JoinColumn(name = "city_id")
-    private City city;
 
     @ElementCollection
     @CollectionTable(

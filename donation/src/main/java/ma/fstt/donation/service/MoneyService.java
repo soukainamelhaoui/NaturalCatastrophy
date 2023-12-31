@@ -15,5 +15,7 @@ public interface MoneyService {
     Money getById(Long id);
 
     List<Money> getAll();
+
+    Float getTotalMoney();
     
 }

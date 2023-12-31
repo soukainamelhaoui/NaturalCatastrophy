@@ -36,4 +36,8 @@ public class Donator {
     @OneToMany(mappedBy = "donator", cascade = CascadeType.ALL)
     private List<Item> itemList;
 
+    @JsonManagedReference
+    @OneToMany(mappedBy = "donator", cascade = CascadeType.ALL)
+    private List<Money> moneyList;
+
 }

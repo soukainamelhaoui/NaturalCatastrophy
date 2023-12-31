@@ -1,10 +1,7 @@
 package ma.fstt.volunteering.service;
 
 import ma.fstt.volunteering.config.LoggingFilter;
-import ma.fstt.volunteering.model.City;
 import ma.fstt.volunteering.model.Distribution;
-import ma.fstt.volunteering.model.Volunteer;
-import ma.fstt.volunteering.repository.CityRepository;
 import ma.fstt.volunteering.repository.DistributionRepository;
 import ma.fstt.volunteering.repository.VolunteerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,16 +12,12 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 @Service
 public class DistributionServiceImp implements DistributionService {
 
     @Autowired
     DistributionRepository distributionRepository;
-
-    @Autowired
-    CityRepository cityRepository;
 
     @Autowired
     VolunteerRepository volunteerRepository;
@@ -37,10 +30,6 @@ public class DistributionServiceImp implements DistributionService {
 
     @Override
     public Distribution save(Distribution distribution) {
-
-        City city = cityRepository.findById(distribution.getCity().getId())
-                .orElseThrow(() -> new RuntimeException("City with ID " + distribution.getCity().getId() + " not found"));
-        distribution.setCity(city);
 
         List<Long> itemIds =  distribution.getItemIds();
         String url = "/item/save-in-distribution";
@@ -63,9 +52,11 @@ public class DistributionServiceImp implements DistributionService {
     public Distribution update(Distribution newDistribution, Long id) {
         return distributionRepository.findById(id)
                 .map(distribution -> {
+                    distribution.setName(newDistribution.getName());
                     distribution.setDepartureDate(newDistribution.getDepartureDate());
                     distribution.setDepartureCity(newDistribution.getDepartureCity());
                     distribution.setVehicle(newDistribution.getVehicle());
+                    distribution.setCity(newDistribution.getCity());
                     return distributionRepository.save(distribution);
                 }).get();
     }

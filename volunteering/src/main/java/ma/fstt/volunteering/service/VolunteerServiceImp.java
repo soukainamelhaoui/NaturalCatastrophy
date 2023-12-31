@@ -22,8 +22,10 @@ public class VolunteerServiceImp implements VolunteerService {
     public Volunteer update(Volunteer newVolunteer, Long id) {
         return volunteerRepository.findById(id)
                 .map(volunteer -> {
-                    volunteer.setName(newVolunteer.getName());
-                    volunteer.setAddress(newVolunteer.getAddress());
+                    volunteer.setFirstName(newVolunteer.getFirstName());
+                    volunteer.setLastName(newVolunteer.getLastName());
+                    volunteer.setRole(newVolunteer.getRole());
+                    volunteer.setAgence(newVolunteer.getAgence());
                     volunteer.setPhone(newVolunteer.getPhone());
                     return volunteerRepository.save(volunteer);
                 }).get();

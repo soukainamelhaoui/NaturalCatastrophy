@@ -21,11 +21,17 @@ public class Volunteer {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "first_name")
+    private String firstName;
 
-    @Column(name = "address")
-    private String address;
+    @Column(name = "last_name")
+    private String lastName;
+
+    @Column(name = "agence")
+    private String agence;
+
+    @Column(name = "role")
+    private String role;
 
     @Column(name = "phone", unique = true)
     private Long phone;

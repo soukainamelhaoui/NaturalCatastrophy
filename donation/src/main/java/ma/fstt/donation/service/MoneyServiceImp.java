@@ -44,7 +44,6 @@ public class MoneyServiceImp implements MoneyService {
         return moneyRepository.findById(id)
                 .map(money -> {
                     money.setAmount(newMoney.getAmount());
-                    money.setDateOfDonation(newMoney.getDateOfDonation());
                     return moneyRepository.save(money);
                 }).get();
     }
@@ -62,6 +61,17 @@ public class MoneyServiceImp implements MoneyService {
     @Override
     public List<Money> getAll() {
         return moneyRepository.findAll();
+    }
+
+    @Override
+    public Float getTotalMoney() {
+        List<Money> moneyList = getAll();
+
+        Float totalSum = moneyList.stream()
+                .map(Money::getAmount)
+                .reduce(0.0f, Float::sum);
+
+        return totalSum;
     }
     
 }

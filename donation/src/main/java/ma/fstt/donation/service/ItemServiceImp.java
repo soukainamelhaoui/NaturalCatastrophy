@@ -49,7 +49,7 @@ public class ItemServiceImp implements ItemService{
                 .map(item -> {
                     item.setDescription(newItem.getDescription());
                     item.setQuantity(newItem.getQuantity());
-                    item.setDateOfDonation(newItem.getDateOfDonation());
+                    item.setType(newItem.getType());
                     return itemRepository.save(item);
                 }).get();
     }

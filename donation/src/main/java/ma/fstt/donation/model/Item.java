@@ -22,11 +22,11 @@ public class Item {
     @Column(name = "description")
     private String description;
 
+    @Column(name = "type")
+    private String type;
+
     @Column(name = "quantity")
     private Integer quantity;
-
-    @Column(name = "date_of_donation")
-    private LocalDate dateOfDonation;
 
     @Column(name = "amount")
     private LocalDate amount;

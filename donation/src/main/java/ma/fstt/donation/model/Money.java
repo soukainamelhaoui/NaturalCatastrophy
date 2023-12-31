@@ -1,9 +1,9 @@
 package ma.fstt.donation.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -21,9 +21,7 @@ public class Money {
     @Column(name = "amount")
     private Float amount;
 
-    @Column(name = "date_of_donation")
-    private LocalDate dateOfDonation;
-
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "donator_id")
     private Donator donator;
