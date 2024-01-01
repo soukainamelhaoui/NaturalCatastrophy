@@ -7,7 +7,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/donation/donator")
@@ -28,9 +30,12 @@ public class DonatorController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public String delete(@PathVariable(value = "id") Long id){
+    public Map<String, String> delete(@PathVariable(value = "id") Long id){
         donatorService.delete(id);
-        return "Deleted Successfully";
+
+        Map<String, String> response = new HashMap<>();
+        response.put("message", "Deleted Successfully");
+        return response;
     }
 
     @GetMapping("/get/{id}")
