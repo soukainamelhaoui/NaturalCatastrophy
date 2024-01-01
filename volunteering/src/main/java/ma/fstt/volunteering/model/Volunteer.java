@@ -36,6 +36,9 @@ public class Volunteer {
     @Column(name = "phone")
     private Long phone;
 
+    @Column(name = "verified")
+    private Boolean isVerified = false;
+
 //    @JsonManagedReference
     @ManyToMany(mappedBy = "volunteers", cascade = CascadeType.ALL)
     private List<Distribution> distributions;

@@ -45,5 +45,16 @@ public class VolunteerController {
         List<Volunteer> volunteerList = volunteerService.getAll();
         return ResponseEntity.status(HttpStatus.OK).body(volunteerList);
     }
+
+    @GetMapping("/not-verified")
+    public ResponseEntity<List<Volunteer>> findByIsVerifiedFalse(){
+        List<Volunteer> volunteerList = volunteerService.findByIsVerifiedFalse();
+        return ResponseEntity.status(HttpStatus.OK).body(volunteerList);
+    }
+
+    @PutMapping("/verify/{id}")
+    public void verify(@PathVariable(value = "id") Long id){
+        volunteerService.verify(id);
+    }
     
 }

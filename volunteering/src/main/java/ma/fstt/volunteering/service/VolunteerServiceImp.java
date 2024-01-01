@@ -57,4 +57,16 @@ public class VolunteerServiceImp implements VolunteerService {
         return null;
     }
 
+    @Override
+    public void verify(Long id){
+        Volunteer volunteer = volunteerRepository.findById(id).get();
+        volunteer.setIsVerified(true);
+        volunteerRepository.save(volunteer);
+    }
+
+    @Override
+    public  List<Volunteer> findByIsVerifiedFalse(){
+        return volunteerRepository.findByIsVerifiedFalse();
+    }
+
 }
