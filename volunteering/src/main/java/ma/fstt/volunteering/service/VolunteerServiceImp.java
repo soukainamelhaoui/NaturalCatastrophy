@@ -54,7 +54,7 @@ public class VolunteerServiceImp implements VolunteerService {
 
     @Override
     public Volunteer findByUsername(String username) {
-        return null;
+        return volunteerRepository.findByUsername(username);
     }
 
     @Override

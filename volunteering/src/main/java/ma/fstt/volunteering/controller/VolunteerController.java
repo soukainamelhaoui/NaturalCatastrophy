@@ -46,6 +46,12 @@ public class VolunteerController {
         return ResponseEntity.status(HttpStatus.OK).body(volunteerList);
     }
 
+    @GetMapping("/get/{username}")
+    public ResponseEntity<Volunteer> getByUsername(@PathVariable(value = "username") String username){
+        Volunteer volunteer = volunteerService.findByUsername(username);
+        return ResponseEntity.status(HttpStatus.OK).body(volunteer);
+    }
+
     @GetMapping("/not-verified")
     public ResponseEntity<List<Volunteer>> findByIsVerifiedFalse(){
         List<Volunteer> volunteerList = volunteerService.findByIsVerifiedFalse();

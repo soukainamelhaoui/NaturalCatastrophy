@@ -1,5 +1,6 @@
 package ma.fstt.volunteering.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -34,7 +35,6 @@ public class Distribution {
     @Column(name = "city")
     private String city;
 
-//    @JsonManagedReference
     @ManyToMany
     @JoinTable(
             name = "volunteer_distribution",

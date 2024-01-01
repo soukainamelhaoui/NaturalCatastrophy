@@ -1,5 +1,6 @@
 package ma.fstt.volunteering.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -39,7 +40,7 @@ public class Volunteer {
     @Column(name = "verified")
     private Boolean isVerified = false;
 
-//    @JsonManagedReference
+    @JsonBackReference
     @ManyToMany(mappedBy = "volunteers", cascade = CascadeType.ALL)
     private List<Distribution> distributions;
 

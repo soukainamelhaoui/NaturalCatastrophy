@@ -17,8 +17,9 @@ public class DistributionController {
     DistributionService distributionService;
 
     @PostMapping("/save")
-    public ResponseEntity<Distribution> save(@RequestBody Distribution distribution){
-        Distribution savedDistribution = distributionService.save(distribution);
+    public ResponseEntity<Distribution> save(@RequestBody Distribution distribution,
+                                             @RequestParam List<Long> volunteerIds){
+        Distribution savedDistribution = distributionService.save(distribution, volunteerIds);
         return ResponseEntity.status(HttpStatus.OK).body(savedDistribution);
     }
 

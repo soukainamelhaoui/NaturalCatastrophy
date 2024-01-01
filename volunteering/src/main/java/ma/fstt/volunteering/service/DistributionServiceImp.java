@@ -2,6 +2,7 @@ package ma.fstt.volunteering.service;
 
 import ma.fstt.volunteering.config.LoggingFilter;
 import ma.fstt.volunteering.model.Distribution;
+import ma.fstt.volunteering.model.Volunteer;
 import ma.fstt.volunteering.repository.DistributionRepository;
 import ma.fstt.volunteering.repository.VolunteerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,11 @@ public class DistributionServiceImp implements DistributionService {
     private WebClient.Builder webClientBuilder;
 
     @Override
-    public Distribution save(Distribution distribution) {
+    public Distribution save(Distribution distribution, List<Long> volunteerIds) {
+
+        List<Volunteer> volunteers = volunteerRepository.findAllById(volunteerIds);
+        distribution.setVolunteers(volunteers);
+
 
         List<Long> itemIds =  distribution.getItemIds();
         String url = "/item/save-in-distribution";
