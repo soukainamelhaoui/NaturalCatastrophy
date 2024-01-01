@@ -62,5 +62,10 @@ public class VolunteerController {
     public void verify(@PathVariable(value = "id") Long id){
         volunteerService.verify(id);
     }
+
+    @PutMapping("/inverify/{id}")
+    public void inverify(@PathVariable(value = "id") Long id){
+        volunteerService.inverify(id);
+    }
     
 }

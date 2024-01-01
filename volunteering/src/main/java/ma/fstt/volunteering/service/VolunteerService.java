@@ -19,6 +19,7 @@ public interface VolunteerService {
     Volunteer findByUsername(String username);
 
     void verify(Long id);
+    void inverify(Long id);
 
     List<Volunteer> findByIsVerifiedFalse();
     
