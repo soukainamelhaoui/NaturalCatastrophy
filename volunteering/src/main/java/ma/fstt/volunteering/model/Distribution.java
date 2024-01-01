@@ -51,4 +51,7 @@ public class Distribution {
     @Column(name = "item_id")
     private List<Long> itemIds;
 
+    @Transient
+    private List<String> volunteerUsernames;
+
 }

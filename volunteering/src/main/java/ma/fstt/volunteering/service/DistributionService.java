@@ -5,7 +5,7 @@ import ma.fstt.volunteering.model.Distribution;
 import java.util.List;
 
 public interface DistributionService {
-    Distribution save(Distribution distribution, List<Long> volunteerIds);
+    Distribution save(Distribution distribution, List<String> volunteerUsernames);
 
     Distribution update(Distribution newDistribution, Long id);
 

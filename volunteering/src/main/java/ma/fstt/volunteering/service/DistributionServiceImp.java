@@ -30,11 +30,10 @@ public class DistributionServiceImp implements DistributionService {
     private WebClient.Builder webClientBuilder;
 
     @Override
-    public Distribution save(Distribution distribution, List<Long> volunteerIds) {
+    public Distribution save(Distribution distribution, List<String> volunteerUsernames) {
 
-        List<Volunteer> volunteers = volunteerRepository.findAllById(volunteerIds);
+        List<Volunteer> volunteers = volunteerRepository.findAllByUsernameIn(volunteerUsernames);
         distribution.setVolunteers(volunteers);
-
 
         List<Long> itemIds =  distribution.getItemIds();
         String url = "/item/save-in-distribution";

@@ -9,4 +9,5 @@ public interface VolunteerRepository extends JpaRepository<Volunteer, Long> {
     Volunteer findByUsername(String username);
     boolean existsByUsername(String username);
     List<Volunteer> findByIsVerifiedFalse();
+    List<Volunteer> findAllByUsernameIn(List<String> usernames);
 }
