@@ -15,5 +15,5 @@ public interface ItemService {
 
     List<Item> getAll();
 
-    void setItemsavailabilityToFalse(List<Long> itemIds);
+    List<String> setItemsavailabilityToFalse(List<Long> itemIds);
 }

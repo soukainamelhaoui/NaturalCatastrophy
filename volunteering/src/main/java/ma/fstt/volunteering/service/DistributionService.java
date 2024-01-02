@@ -18,4 +18,6 @@ public interface DistributionService {
     Distribution setItemIds(Long distributionId, List<Long> newItemIds);
 
     void setDistributionIsDoneToTrue(Long id);
+
+    void setItemNames(Distribution distribution, List<Long> itemIds);
 }

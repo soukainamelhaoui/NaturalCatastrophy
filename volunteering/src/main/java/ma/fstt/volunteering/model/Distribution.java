@@ -54,6 +54,14 @@ public class Distribution {
     @Column(name = "item_id")
     private List<Long> itemIds;
 
+    @ElementCollection
+    @CollectionTable(
+            name = "distribution_item_names",
+            joinColumns = @JoinColumn(name = "distribution_id")
+    )
+    @Column(name = "item_name")
+    private List<String> itemNames;
+
     @Transient
     private List<String> volunteerUsernames;
 

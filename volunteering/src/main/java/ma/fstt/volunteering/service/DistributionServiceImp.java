@@ -7,9 +7,11 @@ import ma.fstt.volunteering.repository.DistributionRepository;
 import ma.fstt.volunteering.repository.VolunteerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Mono;
 
 import java.util.List;
 import java.util.Optional;
@@ -36,18 +38,20 @@ public class DistributionServiceImp implements DistributionService {
         distribution.setVolunteers(volunteers);
 
         List<Long> itemIds =  distribution.getItemIds();
-        String url = "/item/save-in-distribution";
-        webClientBuilder.baseUrl(donationUrl)
-                .filter(new LoggingFilter())
-                .build()
-                .post()
-                .uri(uriBuilder -> uriBuilder
-                        .path(url)
-                        .build())
-                .body(BodyInserters.fromValue(itemIds))
-                .retrieve()
-                .toBodilessEntity()
-                .block();
+
+        setItemNames(distribution, itemIds);
+//        String url = "/item/save-in-distribution";
+//        webClientBuilder.baseUrl(donationUrl)
+//                .filter(new LoggingFilter())
+//                .build()
+//                .post()
+//                .uri(uriBuilder -> uriBuilder
+//                        .path(url)
+//                        .build())
+//                .body(BodyInserters.fromValue(itemIds))
+//                .retrieve()
+//                .toBodilessEntity()
+//                .block();
 
         return distributionRepository.save(distribution);
     }
@@ -89,6 +93,29 @@ public class DistributionServiceImp implements DistributionService {
             return distributionRepository.save(distribution);
         }
         return null;
+    }
+
+    @Override
+    public void setItemNames(Distribution distribution, List<Long> itemIds) {
+
+        String url = "/item/save-in-distribution";
+        Mono<List<String>> itemNamesMono = webClientBuilder.baseUrl(donationUrl)
+                .filter(new LoggingFilter())
+                .build()
+                .post()
+                .uri(uriBuilder -> uriBuilder
+                        .path(url)
+                        .build())
+                .body(BodyInserters.fromValue(itemIds))
+                .retrieve()
+                .bodyToMono(new ParameterizedTypeReference<List<String>>() {});
+
+        List<String> itemNames = itemNamesMono.block();
+
+            distribution.setItemNames(itemNames);
+
+            distributionRepository.save(distribution);
+
     }
 
     @Override

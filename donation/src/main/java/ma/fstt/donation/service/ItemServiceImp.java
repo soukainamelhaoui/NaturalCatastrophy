@@ -57,7 +57,7 @@ public class ItemServiceImp implements ItemService{
         return itemRepository.findByIsAvailableTrue();
     }
 
-    public void setItemsavailabilityToFalse(List<Long> itemIds) {
+    public List<String> setItemsavailabilityToFalse(List<Long> itemIds) {
 
         List<Item> items = itemRepository.findAllById(itemIds);
         for (Item item : items) {
@@ -65,6 +65,7 @@ public class ItemServiceImp implements ItemService{
         }
         itemRepository.saveAll(items);
 
+        return itemRepository.findNamesByIdIn(itemIds);
     }
 
 }

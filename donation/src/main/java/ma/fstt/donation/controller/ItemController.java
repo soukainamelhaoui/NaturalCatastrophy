@@ -52,13 +52,9 @@ public class ItemController {
     }
 
     @PostMapping("/save-in-distribution")
-    public ResponseEntity<Void> selectItems(
+    public List<String> selectItems(
             @RequestBody List<Long> itemIds) {
-
-        //List<Long> itemIds = request.getItemIds();
-
-        itemService.setItemsavailabilityToFalse(itemIds);
-        return ResponseEntity.ok().build();
+        return itemService.setItemsavailabilityToFalse(itemIds);
     }
 
 }
