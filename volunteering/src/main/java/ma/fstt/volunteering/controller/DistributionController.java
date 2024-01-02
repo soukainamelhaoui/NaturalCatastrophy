@@ -62,5 +62,9 @@ public class DistributionController {
         return ResponseEntity.status(HttpStatus.OK).body(updatedDistribution);
     }
 
+    @PutMapping("/done/{id}")
+    public void setIsDoneToTrue(@PathVariable(value = "id") Long id){
+        distributionService.setDistributionIsDoneToTrue(id);
+    }
 
 }

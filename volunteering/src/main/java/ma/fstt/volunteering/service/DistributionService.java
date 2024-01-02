@@ -16,4 +16,6 @@ public interface DistributionService {
     List<Distribution> getAll();
 
     Distribution setItemIds(Long distributionId, List<Long> newItemIds);
+
+    void setDistributionIsDoneToTrue(Long id);
 }

@@ -35,6 +35,9 @@ public class Distribution {
     @Column(name = "city")
     private String city;
 
+    @Column(name = "done")
+    private Boolean isDone = false;
+
     @ManyToMany
     @JoinTable(
             name = "volunteer_distribution",

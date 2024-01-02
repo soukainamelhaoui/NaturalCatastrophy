@@ -91,4 +91,11 @@ public class DistributionServiceImp implements DistributionService {
         return null;
     }
 
+    @Override
+    public void setDistributionIsDoneToTrue(Long id){
+        Distribution distribution = distributionRepository.findById(id).get();
+        distribution.setIsDone(true);
+        distributionRepository.save(distribution);
+    }
+
 }
