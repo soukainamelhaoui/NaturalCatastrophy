@@ -19,5 +19,7 @@ public interface DistributionService {
 
     void setDistributionIsDoneToTrue(Long id);
 
+    void setDistributionIsDoneToFalse(Long id);
+
     void setItemNames(Distribution distribution, List<Long> itemIds);
 }

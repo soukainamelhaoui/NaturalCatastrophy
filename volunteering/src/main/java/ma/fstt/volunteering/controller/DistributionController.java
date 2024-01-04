@@ -67,4 +67,9 @@ public class DistributionController {
         distributionService.setDistributionIsDoneToTrue(id);
     }
 
+    @PutMapping("/undone/{id}")
+    public void setIsDoneToFalse(@PathVariable(value = "id") Long id){
+        distributionService.setDistributionIsDoneToFalse(id);
+    }
+
 }

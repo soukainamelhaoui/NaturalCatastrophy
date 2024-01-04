@@ -125,4 +125,11 @@ public class DistributionServiceImp implements DistributionService {
         distributionRepository.save(distribution);
     }
 
+    @Override
+    public void setDistributionIsDoneToFalse(Long id){
+        Distribution distribution = distributionRepository.findById(id).get();
+        distribution.setIsDone(false);
+        distributionRepository.save(distribution);
+    }
+
 }
