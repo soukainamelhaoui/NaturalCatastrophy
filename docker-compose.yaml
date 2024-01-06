@@ -1,0 +1,68 @@
+version: '3'
+
+services:
+  discovery:
+    image: taflur111/discovery:1.0
+    network_mode: bridge
+    ports:
+      - "8761:8761"
+
+  gateway:
+    image: taflur111/gateway:1.0
+    network_mode: bridge
+    ports:
+      - "8222:8222"
+    depends_on:
+      - discovery
+
+  mysql-donation:
+    container_name: mysql-donation
+    image: mysql:latest
+    network_mode: bridge
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE_DONATION}
+      MYSQL_USER: ${MYSQL_USER_DONATION}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD_DONATION}
+    ports:
+      - "3308:3306"
+
+  mysql-volunteering:
+    container_name: mysql-volunteering
+    image: mysql:latest
+    network_mode: bridge
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE_VOLUNTEERING}
+      MYSQL_USER: ${MYSQL_USER_VOLUNTEERING}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD_VOLUNTEERING}
+    ports:
+      - "3307:3306"
+
+  donation:
+    image: taflur111/donation:1.0
+    network_mode: bridge
+    ports:
+      - "8010:8010"
+    depends_on:
+      - discovery
+      - gateway
+      - mysql-donation
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-donation:3306/${MYSQL_DATABASE_DONATION}
+      SPRING_DATASOURCE_USERNAME: ${MYSQL_USER_DONATION}
+      SPRING_DATASOURCE_PASSWORD: ${MYSQL_PASSWORD_DONATION}
+
+  volunteering:
+    image: taflur111/volunteering:1.0
+    network_mode: bridge
+    ports:
+      - "8020:8020"
+    depends_on:
+      - discovery
+      - gateway
+      - mysql-volunteering
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-volunteering:3306/${MYSQL_DATABASE_VOLUNTEERING}
+      SPRING_DATASOURCE_USERNAME: ${MYSQL_USER_VOLUNTEERING}
+      SPRING_DATASOURCE_PASSWORD: ${MYSQL_PASSWORD_VOLUNTEERING}
