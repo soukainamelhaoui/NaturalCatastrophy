@@ -1,0 +1,52 @@
+.container {
+    position: relative;
+    text-align: center;
+    color: white;
+  }
+  
+
+  .donate-button {
+    position: absolute;
+    bottom: 150px; /* Adjust the bottom value based on your design */
+    left: 10px; /* Adjust the left value based on your design */
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+  
+  /* Top left text */
+  .top-left {
+    position: absolute;
+    top: 60px;
+    left: 16px;
+    font-size: 80px;
+  }
+  
+  /* Top right text */
+  .top-right {
+    position: absolute;
+    top: 160px;
+    left: 16px;
+    font-size: 40px;
+  }
+  
+  /* Bottom right text */
+  .bottom-right {
+    position: absolute;
+    top: 220px;
+    left: 16px;
+    font-size: 20px;
+  }
+  
+  /* Centered text */
+  .centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  

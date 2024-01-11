@@ -9,7 +9,6 @@
         <outputRelativeToContentRoot value="true" />
         <module name="volunteering" />
         <module name="donation" />
-        <module name="config" />
         <module name="gateway" />
         <module name="discovery" />
       </profile>

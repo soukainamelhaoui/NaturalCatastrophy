@@ -1,0 +1,45 @@
+
+
+<div class="card">
+    <div class="text-center">
+     <h1>All Items </h1>
+   
+ </div>
+
+
+<div class="card" >
+    <p-table
+        [value]="Stocks"
+        [paginator]="true"
+        [rows]="5"
+        [showCurrentPageReport]="true"
+        [tableStyle]="{ 'min-width': '50rem' }"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [rowsPerPageOptions]="[5, 10, 20]"
+    >
+        <ng-template pTemplate="header">
+            <tr>
+                <!-- <th style="width:25%">id</th> -->
+                <th style="width:15%">type</th>
+                <th style="width:10%">quantity</th>
+                <th style="width:10%">isAvailable</th>
+                <th style="width:25%">donatorUsername</th>
+                <th style="width:40%">description</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-Stock>
+            <tr>
+                <!-- <td>{{ product.id }}</td> -->
+                <td>{{ Stock.type }}</td>
+                <td>{{ Stock.quantity }}</td>
+                <td>{{ Stock.isAvailable }}</td>
+                <td>{{ Stock.donatorUsername }}</td>
+                <td>{{ Stock.description }}</td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="paginatorleft">
+        </ng-template>
+        <ng-template pTemplate="paginatorright">
+        </ng-template>
+    </p-table>
+</div>

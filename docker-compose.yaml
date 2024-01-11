@@ -1,0 +1,68 @@
+version: '3'
+
+services:
+  angular-app:
+    container_name: angular-app
+    build:
+      context: ./angular
+      dockerfile: Dockerfile
+    ports:
+      - "4200:4200"
+
+  donation:
+    container_name: donation
+    build:
+      context: ./donation
+      dockerfile: Dockerfile
+    ports:
+      - "8010:8010"
+    depends_on:
+      - mysql-donation
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-donation:3306/donation
+      SPRING_DATASOURCE_USERNAME: donationuser
+      SPRING_DATASOURCE_PASSWORD: donationpassword
+
+  volunteering:
+    container_name: volunteering
+    build:
+      context: ./volunteering
+      dockerfile: Dockerfile
+    ports:
+      - "8020:8020"
+    depends_on:
+      - mysql-volunteering
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-volunteering:3306/volunteering
+      SPRING_DATASOURCE_USERNAME: volunteeringuser
+      SPRING_DATASOURCE_PASSWORD: volunteeringpassword
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    depends_on:
+      - donation
+      - volunteering
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+
+  mysql-donation:
+    container_name: mysql-donation
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: Spiral*0*0*0
+      MYSQL_DATABASE: donation
+      MYSQL_USER: donationuser
+      MYSQL_PASSWORD: donationpassword
+
+  mysql-volunteering:
+    container_name: mysql-volunteering
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: Spiral*0*0*0
+      MYSQL_DATABASE: volunteering
+      MYSQL_USER: volunteeringuser
+      MYSQL_PASSWORD: volunteeringpassword
+

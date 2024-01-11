@@ -1,0 +1,107 @@
+<div class="grid container">
+	<div class="col-12"  style="padding: 50px;">
+		<div class="card">
+			<h5>Please fill</h5>
+            <form [formGroup]="ContributionForm" (ngSubmit)="save()" > 
+			<div class="p-fluid p-formgrid grid">
+				
+                <div class="field col-6  ">
+					<span class="p-input-icon-left">
+						<i class="pi pi-info"></i>
+						<input type="text" formControlName="name"  pInputText placeholder="Contribution Name"/>
+					</span>
+					<div  class="error-message" *ngIf=" ContributionForm.get('name')?.hasError('required') && ContributionForm.get('name')?.dirty" >
+        
+						<p-message severity="error" text="name is required"></p-message>
+	
+						</div>
+				</div>
+
+                <div class="field col-6  ">
+					<span class="p-input-icon-left">
+						<i class="pi pi-home"></i>
+						<input type="text" formControlName="city"  pInputText placeholder="city"/>
+					</span>
+					<div  class="error-message" *ngIf=" ContributionForm.get('city')?.hasError('required') && ContributionForm.get('city')?.dirty" >
+        
+					     <p-message severity="error" text="city is required"></p-message>
+	
+					 </div>
+				</div>
+
+                <div class="field col-6  ">
+					<span class="p-input-icon-left">
+						<i class="pi pi-home"></i>
+						<input type="text" formControlName="departureCity"  pInputText placeholder="departed City"/>
+					</span>
+					<div  class="error-message" *ngIf=" ContributionForm.get('departureCity')?.hasError('required') && ContributionForm.get('departureCity')?.dirty" >
+        
+					     <p-message severity="error" text="departureCity is required"></p-message>
+	
+					 </div>
+				</div>
+           
+                <div class="field col-6  ">
+					<span class="p-input-icon-left">
+						<i class="pi pi-car"></i>
+						<input type="text" formControlName="vehicle"  pInputText placeholder="vehicle Name "/>
+					</span>
+					<div  class="error-message" *ngIf=" ContributionForm.get('vehicle')?.hasError('required') && ContributionForm.get('vehicle')?.dirty" >
+        
+					     <p-message severity="error" text="vehicle is required"></p-message>
+	
+					 </div>
+				</div>
+         
+                <div class="field col-6  ">
+					<span class="p-input-icon-left">
+						<i class="pi pi-users"></i>
+						<p-multiSelect [options]="VolunteersNames"  formControlName="volunteerUsernames" optionLabel="name" optionValue="code" placeholder="select volunteers"></p-multiSelect>
+					</span>
+					<div  class="error-message" *ngIf=" ContributionForm.get('vehicle')?.hasError('required') && ContributionForm.get('vehicle')?.dirty" >
+        
+					     <p-message severity="error" text="vehicle is required"></p-message>
+	
+					 </div>
+				</div>
+         
+				<div class="field col-6  ">
+					<span class="p-input-icon-left">
+						<i class="pipi-search"></i>
+                        <p-multiSelect [options]="ItemsIds"  formControlName="itemIds" optionLabel="name1" optionValue="code1" placeholder="select Items"></p-multiSelect>
+					</span>
+					<div  class="error-message" *ngIf=" ContributionForm.get('vehicle')?.hasError('required') && ContributionForm.get('vehicle')?.dirty" >
+        
+					     <p-message severity="error" text="vehicle is required"></p-message>
+	
+					 </div>
+				</div>
+        
+    			
+                <div class="field col-12">
+                    <label for="buttondisplay" class="font-bold block mb-2"> departureDate </label>
+                    <p-calendar formControlName="departureDate" dateFormat="yy-mm-dd" [showIcon]="true" inputId="buttondisplay"></p-calendar>
+                  
+                    <div  class="error-message"
+                    *ngIf=" ContributionForm.get('departureDate')?.hasError('required') &&
+                     ContributionForm.get('departureDate')?.dirty"
+                    >
+                    <p-message severity="error" text="departureDate is required"></p-message>
+                    </div>
+					
+                </div>
+         
+                
+                <div class="field col-3">
+                    <p-button type="submit"  label="submit" severity="submit"></p-button>
+
+                </div>
+				<div class="field col-3">
+                    <p-button  label="go back" severity="submit" routerLink="../"></p-button>
+
+                </div>
+			</div>
+        </form>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,5 @@
+/* You can add global styles to this file, and also import other style files */
+@import "../node_modules/quill/dist/quill.core.css";
+@import "../node_modules/quill/dist/quill.snow.css";
+@import 'ag-grid-community/styles/ag-grid.css'; // Core grid CSS, always needed
+@import 'ag-grid-community/styles/ag-theme-material.css'; // Optional theme CSS

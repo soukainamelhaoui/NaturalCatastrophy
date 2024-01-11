@@ -1,23 +1,17 @@
-eureka:
-  instance:
-    hostname: localhost
-  client:
-    service-url:
-      defaultZone: http://localhost:8761/eureka
-
 server:
   port: 8010
 
 spring:
   application:
     name: donation
-  config:
-    import: optional:configserver:http://localhost:8888
+  cloud:
+    config:
+      enabled: false
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/donation
-    username: root
-    password:
+    url: jdbc:mysql://mysql-donation:3306/donation
+    username: donationuser
+    password: donationpassword
   jpa:
     hibernate:
       ddl-auto: update

@@ -1,0 +1,16 @@
+
+<div>
+    <p-inputSwitch (onChange)="changeUserState(checked,id)" [(ngModel)]="checked"></p-inputSwitch>
+
+    <button
+      *ngFor="let item of items"
+      pButton
+      pRipple
+      type="button"
+      [icon]="item.icon"
+      (click)="selectOption(item.id)"
+      [ngClass]="item.class"
+    ></button>
+  </div>
+  
+  

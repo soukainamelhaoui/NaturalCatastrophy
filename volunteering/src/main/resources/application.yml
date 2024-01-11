@@ -11,13 +11,14 @@ server:
 spring:
   application:
     name: volunteering
-  config:
-    import: optional:configserver:http://localhost:8888
+  cloud:
+    config:
+      enabled: false
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/volunteering
-    username: root
-    password:
+    url: jdbc:mysql://mysql-volunteering:3306/volunteering
+    username: volunteeringuser
+    password: volunteeringpassword
   jpa:
     hibernate:
       ddl-auto: update

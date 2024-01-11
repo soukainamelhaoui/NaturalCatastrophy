@@ -1,0 +1,41 @@
+<p-toast></p-toast>
+<p-confirmDialog #cd [style]="{width: '50vw'}">
+  <ng-template pTemplate="header">
+      <h3>Header Content</h3>
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <button type="button" pButton icon="pi pi-times" label="No" (click)="cd.reject()"></button>
+    <button type="button" pButton icon="pi pi-check" label="Yes" (click)="cd.accept()"></button>
+  </ng-template>
+</p-confirmDialog>
+
+
+<div class="mt-3">
+  <div class="mt-4 mr-6" >
+    <div class="card flex justify-content-end align-items-center">
+      <!-- Conteneur flex pour aligner les éléments horizontalement et verticalement -->
+      <p class="mr-2">Show UnDone Tasks Only</p>
+      <!-- Ajout d'un peu d'espace à droite du texte -->
+      
+      <p-inputSwitch [(ngModel)]="showInactiveVolunteersOnly" (onChange)="filterCustomers()"></p-inputSwitch>
+    </div>
+  </div>
+  <div class="field col-3">
+    <p-button type="submit"  label="create new Task" severity="submit" routerLink="/contribution/save"></p-button>
+
+</div>
+  <div class="col-12">
+    <ag-grid-angular
+    style="  height: 550px;"
+    class="ag-theme-material"
+    [rowData]="allContributions"
+    [columnDefs]="gridOptions.columnDefs"
+     [pagination]="true"
+    >
+    </ag-grid-angular>
+  </div>
+  <!-- <p-paginator
+      #paginator
+      [rows]="10" [totalRecords]="120" [rowsPerPageOptions]="[10, 20, 30]"
+  ></p-paginator> -->
+</div>
