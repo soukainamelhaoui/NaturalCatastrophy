@@ -1,0 +1,101 @@
+
+<div class="grid container">
+	<div class="col-12" style="padding: 50px;">
+		<div class="card">
+			<h5>Please fill</h5>
+			<form [formGroup]="volunteerForm" (ngSubmit)="save()" > 
+			<div class="p-fluid p-formgrid grid">
+				
+                <div class="field col-6 ">
+					<label htmlFor="username">username</label>
+					<span class="p-input-icon-left">
+						<i class="pi pi-user"></i>
+						<input type="text" formControlName="username" pInputText placeholder="username"/>
+					</span>
+					<div  class="error-message"
+                    *ngIf=" volunteerForm.get('username')?.hasError('required') &&
+                     volunteerForm.get('username')?.dirty"
+                    >
+                    <p-message severity="error" text="username is required"></p-message>
+
+                    </div>
+				</div>
+				<div class="field col-6 ">
+					<label htmlFor="firstName">firstName</label>
+					<span class="p-input-icon-left">
+						<i class="pi pi-user"></i>
+						<input type="text" formControlName="firstName" pInputText placeholder="firstName"/>
+					</span>
+					<div  class="error-message"
+                    *ngIf=" volunteerForm.get('firstName')?.hasError('required') &&
+                     volunteerForm.get('firstName')?.dirty"
+                    >
+                    <p-message severity="error" text="firstName is required"></p-message>
+
+                    </div>
+				</div>
+				<div class="field col-6 ">
+					<label htmlFor="lastName">lastName</label>
+					<span class="p-input-icon-left">
+						<i class="pi pi-user"></i>
+						<input type="text" formControlName="lastName" pInputText placeholder="lastName"/>
+					</span>
+					<div  class="error-message"
+                    *ngIf=" volunteerForm.get('lastName')?.hasError('required') &&
+                     volunteerForm.get('lastName')?.dirty"
+                    >
+                    <p-message severity="error" text="lastName is required"></p-message>
+
+                    </div>
+				</div>
+				
+				<div class="field col-6  ">
+					<label htmlFor="agence">Agency</label>
+					<p-dropdown [options]="dropdownItems2" optionLabel="name" formControlName="agence"  optionValue="code"></p-dropdown>
+					<div  class="error-message"
+                    *ngIf=" volunteerForm.get('agence')?.hasError('required') &&
+                     volunteerForm.get('agence')?.dirty"
+                    >
+                    <p-message severity="error" text="type is required"></p-message>
+
+                    </div>
+				</div>
+
+				<div class="field col-6  ">
+					<label htmlFor="role">role</label>
+					<p-dropdown [options]="dropdownItems" optionLabel="name" formControlName="role"  optionValue="code"></p-dropdown>
+					<div  class="error-message"
+                    *ngIf=" volunteerForm.get('role')?.hasError('required') &&
+                     volunteerForm.get('role')?.dirty"
+                    >
+                    <p-message severity="error" text="role is required"></p-message>
+
+                    </div>
+				</div>
+			
+		
+				
+				<div   class="field col-6">
+					<label htmlFor="phone">phone </label>
+					<input pInputText id="city" formControlName="phone" type="number" />
+					<div  class="error-message" *ngIf=" volunteerForm.get('phone')?.hasError('required') && volunteerForm.get('phone')?.dirty" >
+        
+                    <p-message severity="error" text="phone is required"></p-message>
+
+                    </div>
+				</div>
+
+          
+                <div class="field col-3">
+                    <p-button type="submit" label="submit" severity="submit"></p-button>
+
+                </div>
+				<div class="field col-3">
+                    <p-button  label="go back" severity="submit" routerLink="../../donation"></p-button>
+
+                </div>
+			</div>
+		</form>
+		</div>
+	</div>
+</div>

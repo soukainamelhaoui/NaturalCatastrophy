@@ -1,0 +1,67 @@
+
+<div class="container">
+    <img src="assets/catastrophe/1.jpg" alt="Snow" style="width:100%; height: 500px;;">
+    <a class="donate-button" routerLink="../donation">Donate Now</a>
+    <div class="top-left">Donation Needed!</div>
+    <div class="top-right">Every contribution counts. </div>  
+    <div class="bottom-right">Join us in making a difference. your donation is needed and appreciated</div>
+  </div>
+
+
+
+
+
+<div class="grid p-fluid">
+    <div class="col-12">
+        <div class="card">
+            <p-carousel [value]="catastrophe" [numVisible]="3" [numScroll]="3" [circular]="false" [responsiveOptions]="carouselResponsiveOptions">
+                <ng-template let-product pTemplate="item">
+                    <div class="border-round m-2 text-center p-2" style="border: 1px solid var(--surface-d)">
+                        <div class="my-5">
+                            <!-- Utilisez le chemin relatif pour accéder aux images -->
+                            <img src="assets/catastrophe/{{product.image}}" [alt]="product.name" class="shadow-4" width="50%" />
+                        </div>
+                        <div>
+                            <h5 class="mb-1">{{ product.name }}</h5>
+                        </div>
+                    </div>
+                </ng-template>
+            </p-carousel>
+        </div>
+    </div>
+</div>
+
+
+  
+<div class="container">
+    <img src="assets/catastrophe/7.jpg" alt="Snow" style="width:100%; height: 500px;;"><a>test</a> 
+    <div class="top-left">Volunteers Needed!</div>
+    <div class="top-right">Learn about our highest-priority positions <br>and how you can make a difference!</div>  
+    <a class="donate-button" routerLink="../volunteers-table/form">Be A VOLUNTEER</a>
+  </div>
+
+
+
+
+
+
+  <div class="grid p-fluid">
+    <div class="col-12">
+        <div class="card">
+            <p-carousel [value]="catastrophe" [numVisible]="3" [numScroll]="3" [circular]="false" [responsiveOptions]="carouselResponsiveOptions">
+                <ng-template let-product pTemplate="item">
+                    <div class="border-round m-2 text-center p-2" style="border: 1px solid var(--surface-d)">
+                        <div class="my-5">
+                            <!-- Utilisez le chemin relatif pour accéder aux images -->
+                            <img src="assets/catastrophe/{{product.image}}" [alt]="product.name" class="shadow-4" width="50%" />
+                        </div>
+                        <div>
+                            <h5 class="mb-1">{{ product.name }}</h5>
+                        </div>
+                    </div>
+                </ng-template>
+            </p-carousel>
+        </div>
+    </div>
+</div>
+

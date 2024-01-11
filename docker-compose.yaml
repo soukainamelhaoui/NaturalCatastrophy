@@ -1,68 +1,68 @@
 version: '3'
 
 services:
-  discovery:
-    image: taflur111/discovery:1.0
-    network_mode: bridge
+  angular-app:
+    container_name: angular-app
+    build:
+      context: ./angular
+      dockerfile: Dockerfile
     ports:
-      - "8761:8761"
+      - "4200:4200"
 
-  gateway:
-    image: taflur111/gateway:1.0
-    network_mode: bridge
+  donation:
+    container_name: donation
+    build:
+      context: ./donation
+      dockerfile: Dockerfile
     ports:
-      - "8222:8222"
+      - "8010:8010"
     depends_on:
-      - discovery
+      - mysql-donation
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-donation:3306/donation
+      SPRING_DATASOURCE_USERNAME: donationuser
+      SPRING_DATASOURCE_PASSWORD: donationpassword
+
+  volunteering:
+    container_name: volunteering
+    build:
+      context: ./volunteering
+      dockerfile: Dockerfile
+    ports:
+      - "8020:8020"
+    depends_on:
+      - mysql-volunteering
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-volunteering:3306/volunteering
+      SPRING_DATASOURCE_USERNAME: volunteeringuser
+      SPRING_DATASOURCE_PASSWORD: volunteeringpassword
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    depends_on:
+      - donation
+      - volunteering
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
 
   mysql-donation:
     container_name: mysql-donation
     image: mysql:latest
-    network_mode: bridge
     environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_DATABASE: ${MYSQL_DATABASE_DONATION}
-      MYSQL_USER: ${MYSQL_USER_DONATION}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD_DONATION}
-    ports:
-      - "3308:3306"
+      MYSQL_ROOT_PASSWORD: Spiral*0*0*0
+      MYSQL_DATABASE: donation
+      MYSQL_USER: donationuser
+      MYSQL_PASSWORD: donationpassword
 
   mysql-volunteering:
     container_name: mysql-volunteering
     image: mysql:latest
-    network_mode: bridge
     environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_DATABASE: ${MYSQL_DATABASE_VOLUNTEERING}
-      MYSQL_USER: ${MYSQL_USER_VOLUNTEERING}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD_VOLUNTEERING}
-    ports:
-      - "3307:3306"
+      MYSQL_ROOT_PASSWORD: Spiral*0*0*0
+      MYSQL_DATABASE: volunteering
+      MYSQL_USER: volunteeringuser
+      MYSQL_PASSWORD: volunteeringpassword
 
-  donation:
-    image: taflur111/donation:1.0
-    network_mode: bridge
-    ports:
-      - "8010:8010"
-    depends_on:
-      - discovery
-      - gateway
-      - mysql-donation
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-donation:3306/${MYSQL_DATABASE_DONATION}
-      SPRING_DATASOURCE_USERNAME: ${MYSQL_USER_DONATION}
-      SPRING_DATASOURCE_PASSWORD: ${MYSQL_PASSWORD_DONATION}
-
-  volunteering:
-    image: taflur111/volunteering:1.0
-    network_mode: bridge
-    ports:
-      - "8020:8020"
-    depends_on:
-      - discovery
-      - gateway
-      - mysql-volunteering
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-volunteering:3306/${MYSQL_DATABASE_VOLUNTEERING}
-      SPRING_DATASOURCE_USERNAME: ${MYSQL_USER_VOLUNTEERING}
-      SPRING_DATASOURCE_PASSWORD: ${MYSQL_PASSWORD_VOLUNTEERING}

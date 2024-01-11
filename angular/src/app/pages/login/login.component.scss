@@ -1,0 +1,14 @@
+.login-container {
+	background-image: url('https://ausexamination.ac.in/public/themes/student/global/img/login/1.jpg');
+	background-size: cover;
+	background-position: center;
+  }
+  
+  
+  :host ::ng-deep .error-message {
+  
+	color: #d32f2f; /* A dark red color for warning */
+	font-size: 14px;
+	font-weight: 550;
+  }
+  

@@ -1,0 +1,41 @@
+
+
+<div class="card" style="padding: 20px;">
+   <div class="text-center">
+    <h1>Money Balance</h1>
+    <h3>{{this.MoneyBalance}}$</h3>
+</div>
+    <p-table
+        [value]="allmoney"
+        [paginator]="true"
+        [rows]="5"
+        [showCurrentPageReport]="true"
+        [tableStyle]="{ 'min-width': '50rem' }"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [rowsPerPageOptions]="[5, 10, 20]"
+    >
+        <ng-template pTemplate="header">
+           
+            <tr>
+                <!-- <th style="width:25%">id</th> -->
+                
+                <th style="width:10%">Donater Name</th>
+                <th style="width:10%">amount</th>
+                <th style="width:25%">comment</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-money>
+            <tr>
+                <!-- <td>{{ product.id }}</td> -->
+                <td>{{ money.donatorUsername }}</td>
+                <td>{{ money.amount }}</td>
+                <td>{{ money.comment }}</td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="paginatorleft">
+        </ng-template>
+        <ng-template pTemplate="paginatorright">
+        </ng-template>
+    </p-table>
+</div>
+

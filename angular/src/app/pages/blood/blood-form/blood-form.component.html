@@ -1,0 +1,118 @@
+<p-toast key="tst"></p-toast>
+<div class="grid container">
+	<div class="col-12" style="padding: 50px;">
+		<div class="card">
+			<h5>Please fill</h5>
+			<form [formGroup]="DonateBloodForm" (ngSubmit)="save()" > 
+			<div class="p-fluid p-formgrid grid">
+				
+                <div class="field col-6 ">
+					<label htmlFor="state" >username</label>
+					<span class="p-input-icon-left">
+						<i class="pi pi-user"></i>
+						<input type="text" formControlName="donatorUsername" pInputText placeholder="username"/>
+					</span>
+                    <div  class="error-message"
+                    *ngIf=" DonateBloodForm.get('donatorUsername')?.hasError('required') &&
+                     DonateBloodForm.get('donatorUsername')?.dirty"
+                    >
+                    <p-message severity="error" text="username is required"></p-message>
+
+                    </div>
+				</div>
+                <div class="field col-12">
+                    <label htmlFor="blood">Blood type</label>
+                    <div class="flex flex-wrap gap-3">
+                        <div class="flex align-items-center">
+                            <p-radioButton name="bloodType" value="A+" formControlName="bloodType" inputId="A+"></p-radioButton>
+                            <label for="A+" class="ml-2">A+</label>
+                        </div>
+                        <div class="flex align-items-center">
+                            <p-radioButton name="bloodType" value="A-" formControlName="bloodType" inputId="A-"></p-radioButton>
+                            <label for="A-" class="ml-2">A-</label>
+                        </div>
+                        <div class="flex align-items-center">
+                            <p-radioButton name="bloodType" value="B+" formControlName="bloodType" inputId="B+"></p-radioButton>
+                            <label for="B+" class="ml-2">B+</label>
+                        </div>
+                        <div class="flex align-items-center">
+                            <p-radioButton name="bloodType" value="B-"formControlName="bloodType" inputId="B-"></p-radioButton>
+                            <label for="B-" class="ml-2">B-</label>
+                        </div>
+                        <div class="flex align-items-center">
+                            <p-radioButton name="bloodType" value="O+" formControlName="bloodType" inputId="O+"></p-radioButton>
+                            <label for="O+" class="ml-2">O+</label>
+                        </div>
+                        <div class="flex align-items-center">
+                            <p-radioButton name="bloodType" value="O-" formControlName="bloodType" inputId="O-"></p-radioButton>
+                            <label for="O-" class="ml-2">O-</label>
+                        </div>
+                        <div class="flex align-items-center">
+                            <p-radioButton name="bloodType" value="AB+" formControlName="bloodType" inputId="AB+"></p-radioButton>
+                            <label for="AB+" class="ml-2">AB+</label>
+                        </div>
+                        <div class="flex align-items-center">
+                            <p-radioButton name="bloodType" value="AB-" formControlName="bloodType" inputId="AB-"></p-radioButton>
+                            <label for="AB-" class="ml-2">AB-</label>
+                        </div>
+                    </div>
+                </div>
+                
+				
+                <div class="field col-6">
+                    <label for="buttondisplay" class="font-bold block mb-2"> reserve donating date </label>
+                    <p-calendar formControlName="donationDate" dateFormat="yy-mm-dd" [showIcon]="true" inputId="buttondisplay"></p-calendar>
+                  
+                    <div  class="error-message"
+                    *ngIf=" DonateBloodForm.get('donationDate')?.hasError('required') &&
+                     DonateBloodForm.get('donationDate')?.dirty"
+                    >
+                    <p-message severity="error" text="donationDate is required"></p-message>
+                    </div>
+                </div>
+                <div class="field col-6">
+                    <label for="buttondisplay" class="font-bold block mb-2"> What was the last time you donated blood?</label>
+                    <p-calendar formControlName="lastDonationDate" dateFormat="yy-mm-dd" [showIcon]="true" inputId="buttondisplay"></p-calendar>
+                    <div  class="error-message"
+                    *ngIf=" DonateBloodForm.get('lastDonationDate')?.hasError('required') &&
+                     DonateBloodForm.get('lastDonationDate')?.dirty"
+                    >
+                    <p-message severity="error" text="lastDonationDate is required"></p-message>
+                    </div>
+                </div>
+
+				<div class="field col-6">
+					<label htmlFor="city">City</label>
+					<input pInputText id="city"  formControlName="city" type="text" />
+                    <div  class="error-message"
+                    *ngIf=" DonateBloodForm.get('city')?.hasError('required') &&
+                     DonateBloodForm.get('city')?.dirty"
+                    >
+                    <p-message severity="error" text="city is required"></p-message>
+                    </div>
+				</div>
+				
+                <div class="field col-6  ">
+					<label htmlFor="state">Select Agency</label>
+					<p-dropdown [options]="dropdownItems" optionLabel="name" formControlName="agency"  optionValue="code"></p-dropdown>
+                    <div  class="error-message"
+                    *ngIf=" DonateBloodForm.get('agency')?.hasError('required') &&
+                     DonateBloodForm.get('agency')?.dirty"
+                    >
+                    <p-message severity="error" text="Agency is required"></p-message>
+                    </div>
+                </div>
+          
+                <div class="field col-3">
+                  <p-button type="submit" label="submit" severity="submit"></p-button> 
+
+                </div>
+                <div class="field col-3">
+                    <p-button  label="go back" severity="submit" routerLink="../"></p-button>
+
+                </div>
+			</div>
+		</form>
+		</div>
+	</div>
+</div>

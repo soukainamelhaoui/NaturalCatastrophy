@@ -1,0 +1,78 @@
+
+<div class="grid container">
+	<div class="col-12" style="padding: 50px;">
+		<div class="card">
+			<h5>Please fill</h5>
+			<form [formGroup]="DonateForm" (ngSubmit)="save()" > 
+			<div class="p-fluid p-formgrid grid">
+				
+                <div class="field col-6 ">
+					<label htmlFor="state">username</label>
+					<span class="p-input-icon-left">
+						<i class="pi pi-user"></i>
+						<input type="text" formControlName="donatorUsername" pInputText placeholder="username"/>
+					</span>
+					<div  class="error-message"
+                    *ngIf=" DonateForm.get('donatorUsername')?.hasError('required') &&
+                     DonateForm.get('donatorUsername')?.dirty"
+                    >
+                    <p-message severity="error" text="username is required"></p-message>
+
+                    </div>
+				</div>
+               
+				
+				<div class="field col-6  ">
+					<label htmlFor="Type">Donation Type</label>
+					<p-dropdown [options]="dropdownItems" optionLabel="name" formControlName="type"  optionValue="code"></p-dropdown>
+					<div  class="error-message"
+                    *ngIf=" DonateForm.get('type')?.hasError('required') &&
+                     DonateForm.get('type')?.dirty"
+                    >
+                    <p-message severity="error" text="type is required"></p-message>
+
+                    </div>
+				</div>
+
+	
+			
+				<!-- <div *ngIf="selectedDonation === 'Other'" class="field col-6">
+					<label htmlFor="Type" >item Name</label>
+					<input pInputText id="item_name" formControlName="type" type="text" />
+					<div  class="error-message"
+                    *ngIf=" DonateForm.get('type')?.hasError('required') &&
+                     DonateForm.get('type')?.dirty"
+                    >
+                    <p-message severity="error" text="type name  is required"></p-message>
+
+                    </div>
+				</div> -->
+				
+				<div   class="field col-6">
+					<label htmlFor="montant">quantity </label>
+					<input pInputText id="city" formControlName="quantity" type="number" />
+					<div  class="error-message" *ngIf=" DonateForm.get('quantity')?.hasError('required') && DonateForm.get('quantity')?.dirty" >
+        
+                    <p-message severity="error" text="quantity is required"></p-message>
+
+                    </div>
+				</div>
+
+                <div class="field col-6">
+                    <label htmlFor="Comment">Description </label>
+                    <textarea rows="5" cols="30" formControlName="description" pInputTextarea ></textarea>
+               
+				</div>
+                <div class="field col-3">
+                    <p-button type="submit" label="submit" severity="submit"></p-button>
+
+                </div>
+				<div class="field col-3">
+                    <p-button  label="go back" severity="submit" routerLink="../"></p-button>
+
+                </div>
+			</div>
+		</form>
+		</div>
+	</div>
+</div>
